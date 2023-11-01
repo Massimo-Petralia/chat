@@ -2,27 +2,31 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ChatLoginComponent } from './features/chat/chat-login/chat-login.component';
-import { ChatPageComponent } from './features/chat/chat-page/chat-page.component';
+import { ChatLoginPageComponent } from './features/chat/chat-login-page/chat-login-page.component';
 import { ChatUserListComponent } from './features/chat/chat-user-list/chat-user-list.component';
+import { ChatUserListPageComponent } from './features/chat/chat-user-list-page/chat-user-list-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ChatLoginComponent,
-    ChatPageComponent,
-    ChatUserListComponent
+    ChatLoginPageComponent,
+    ChatUserListComponent,
+    ChatUserListPageComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    HttpClientModule,
     RouterModule.forRoot([
-      {path: '', component: ChatLoginComponent},
-      {path: 'user-list', component: ChatUserListComponent}
+      {path: '', component: ChatLoginPageComponent},
+      {path: 'user-list-page', component: ChatUserListPageComponent}
     ])
   ],
   providers: [],

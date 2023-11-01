@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-chat-user-list',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./chat-user-list.component.scss']
 })
 export class ChatUserListComponent {
+
+  @Input() users: User[] = []
+
+  constructor(){}
+
+
 
 }
