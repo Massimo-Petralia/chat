@@ -5,25 +5,31 @@ import { FormBuilder } from '@angular/forms';
 @Component({
   selector: 'app-chat-login',
   templateUrl: './chat-login.component.html',
-  styleUrls: ['./chat-login.component.scss']
+  styleUrls: ['./chat-login.component.scss'],
 })
 export class ChatLoginComponent {
-
-  constructor(private formBuilder: FormBuilder){}
+  constructor(private formBuilder: FormBuilder) {}
 
   //user?: User
 
-  @Output() user = new EventEmitter<User>()
+  emptyFieldsMessage: boolean = false;
+  @Output() user = new EventEmitter<User>();
 
   form = this.formBuilder.group({
     name: this.formBuilder.control<string>(''),
     nick_name: this.formBuilder.control<string>(''),
     password: this.formBuilder.control<string>(''),
-  })
+  });
 
-onLog() {
-  this.user.emit(this.form.value)
-}
-  
-
+  onLog() {
+    const formValue = JSON.stringify(this.form.value);
+    const comparisonValue = '{"name":"","nick_name":"","password":""}';
+    if (formValue === comparisonValue) {
+      debugger;
+      this.emptyFieldsMessage = true;
+      return;
+    } else {
+      this.user.emit(this.form.value);
+    }
+  }
 }

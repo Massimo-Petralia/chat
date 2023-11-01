@@ -18,6 +18,7 @@ export class ChatLoginPageComponent implements OnDestroy {
   subs = new Subscription();
 
   onLog(user: User) {
+    
     this.subs.add(this.dataService.createUser(user).subscribe((user) => {
       this.users.push(user)
       this.router.navigate(['/user-list-page'])

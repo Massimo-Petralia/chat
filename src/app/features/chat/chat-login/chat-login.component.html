@@ -7,3 +7,4 @@
     <input type="text" formControlName="password">
     <button type="submit" (click)="onLog()">Log-in</button>
 </form>
+<p class="logAlertMessage" *ngIf="emptyFieldsMessage">the imput fields can not be empty</p>
