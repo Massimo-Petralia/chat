@@ -10,7 +10,15 @@ export class DataService {
 
   usersDataURL = "http://localhost:3000/users"
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { };
+
+  checkProperty(user: User, property: string){
+    return this.http.get<User[]>(`${this.usersDataURL}?${property}_like=${user.nick_name}`)
+  }
+
+  checkPassword(user: User){
+    return this.http.get<User[]|[]>(`${this.usersDataURL}?q=${user.password}`)
+  }
 
   getUsers(){
     return this.http.get<User[]>(this.usersDataURL).pipe(
