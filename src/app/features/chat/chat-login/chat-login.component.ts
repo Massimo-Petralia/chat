@@ -25,11 +25,9 @@ export class ChatLoginComponent {
     const formValue = JSON.stringify(this.form.value);
     const comparisonValue = '{"name":"","nick_name":"","password":""}';
     if (formValue === comparisonValue) {
-      debugger;
       this.emptyFieldsMessage = true;
       return;
-    } else {
-      this.user.emit(this.form.value);
     }
+    this.user.emit(this.form.value);
   }
 }
