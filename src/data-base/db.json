@@ -299,6 +299,30 @@
       "nick_name": "",
       "password": "",
       "id": 50
+    },
+    {
+      "name": "Ernesto",
+      "nick_name": "diabolik",
+      "password": "comic1",
+      "id": 51
+    },
+    {
+      "name": "",
+      "nick_name": "mazzinga",
+      "password": "",
+      "id": 52
+    },
+    {
+      "name": "",
+      "nick_name": "rambo",
+      "password": "",
+      "id": 53
+    },
+    {
+      "name": "",
+      "nick_name": "lyzard",
+      "password": "",
+      "id": 54
     }
   ]
 }

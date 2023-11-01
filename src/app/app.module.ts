@@ -26,7 +26,7 @@ import { ChatUserListPageComponent } from './features/chat/chat-user-list-page/c
     HttpClientModule,
     RouterModule.forRoot([
       {path: '', component: ChatLoginPageComponent},
-      {path: 'user-list-page', component: ChatUserListPageComponent}
+      {path: 'user-list-page/:logged-in-user', component: ChatUserListPageComponent}
     ])
   ],
   providers: [],

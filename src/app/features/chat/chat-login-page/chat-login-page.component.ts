@@ -21,7 +21,7 @@ export class ChatLoginPageComponent implements OnDestroy {
     
     this.subs.add(this.dataService.createUser(user).subscribe((user) => {
       this.users.push(user)
-      this.router.navigate(['/user-list-page'])
+      this.router.navigate(['/user-list-page', user.nick_name])
     }));
   }
 ngOnDestroy(): void {

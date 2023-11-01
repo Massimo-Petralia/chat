@@ -1,16 +1,19 @@
-form{
-    display: flex;
-    flex-direction: column;
-}
-input{
-    margin: 10px 0px 10px 0px
+h2 {
+  text-align: center;
 }
 
-button{
-    margin: 10px 0px 10px 0px
-
+form {
+  display: flex;
+  flex-direction: column;
+}
+input {
+  margin: 10px 0px 10px 0px;
 }
 
-.logAlertMessage{
-    color: red;
+button {
+  margin: 10px 0px 10px 0px;
+}
+
+.logAlertMessage {
+  color: red;
 }
