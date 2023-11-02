@@ -10,6 +10,9 @@ import { FormBuilder } from '@angular/forms';
 export class ChatLoginComponent {
   constructor(private formBuilder: FormBuilder) {}
 
+  nickNameError : boolean = false
+  passwordError : boolean = false
+  signInSucces : boolean = false
 
   emptyFieldsMessage: boolean = false;
   emptyfield: boolean = false
