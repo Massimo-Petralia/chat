@@ -3,11 +3,12 @@
     <label for="name">Name: </label>
     <input type="text" formControlName="name">
     <label for="nick_name">Nick-name: </label>
-    <p class="alertMessage" *ngIf="nickNameError">The mick-name is already in use, try another one</p>
     <input type="text" formControlName="nick_name">
     <label for="password">Password: </label>
     <input type="text" formControlName="password">
     <p class="alertMessage" *ngIf="passwordError">the password is already in use, try another one</p>
+    <p class="alertMessage" *ngIf="nickNameError">The mick-name is already in use, try another one</p>
+    <p class="alertMessage" *ngIf="isEmpty">{{emptyFieldsMessage }}</p>
     <button type="submit" (click)="onSignIn()">Sign-in</button>
     <p *ngIf="signInSucces">Your registration was successful, you can log in</p>
 </form>
@@ -22,4 +23,3 @@
     <button type="submit" (click)="onLog()">Log-in</button>
 </form>
 <p class="alertMessage" *ngIf="emptyFieldsMessage">the imput fields can not be empty</p>
-<p class="alertMessage" *ngIf="emptyfield">Nick-name field can not be empty</p>
