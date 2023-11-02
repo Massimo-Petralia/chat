@@ -13,9 +13,10 @@ export class ChatLoginComponent {
   nickNameError: boolean = false;
   passwordError: boolean = false;
   signInSucces: boolean = false;
-  isEmpty: boolean = false;
+  nameEmpty: boolean = false;
+  nick_nameEmpty: boolean = false;
+  passwordEmpty: boolean = false;
 
-  emptyFieldsMessage: string = 'fields can not be empty';
   emptyfield: boolean = false;
   @Output() user = new EventEmitter<User>();
 
@@ -36,31 +37,18 @@ export class ChatLoginComponent {
       this.user.emit(this.formSignIn.value);
     } else {
       if (this.formSignIn.controls.password.value === '') {
-        this.isEmpty = true;
-        this.emptyFieldsMessage = 'password ' + this.emptyFieldsMessage;
+        this.passwordEmpty = true;
       }
       if (this.formSignIn.controls.nick_name.value === '') {
-        this.isEmpty = true;
-        this.emptyFieldsMessage = 'nick name, ' + this.emptyFieldsMessage;
+        this.nick_nameEmpty = true;
       }
       if (this.formSignIn.controls.name.value === '') {
-        this.isEmpty = true;
-        this.emptyFieldsMessage = 'name, ' + this.emptyFieldsMessage;
+        this.nameEmpty = true;
       }
     }
   }
 
   onLog() {
-    // const formValue = JSON.stringify(this.formLog.value);
-    // const comparisonValue = '{"name":"","nick_name":"","password":""}';
-    // if (formValue === comparisonValue) {
-    //   this.emptyFieldsMessage = true;
-    //   return;
-    // }
-    // if (this.formLog.controls.nick_name.value === '') {
-    //   this.emptyfield = true;
-    //   return;
-    // }
     this.user.emit(this.formLog.value);
   }
 }
