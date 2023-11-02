@@ -12,10 +12,10 @@ export class ChatLoginComponent {
 
   nickNameError: boolean = false;
   passwordError: boolean = false;
-  signInSucces: boolean = false;
   nameEmpty: boolean = false;
   nick_nameEmpty: boolean = false;
   passwordEmpty: boolean = false;
+  signInSucces: boolean = false;
 
   emptyfield: boolean = false;
   @Output() user = new EventEmitter<User>();
@@ -32,18 +32,30 @@ export class ChatLoginComponent {
     password: this.formBuilder.control<string>(''),
   });
 
+  reset() {
+    this.nameEmpty = false;
+    this.nick_nameEmpty = false;
+    this.passwordEmpty = false;
+  }
   onSignIn() {
     if (this.formSignIn.valid) {
+      this.reset();
       this.user.emit(this.formSignIn.value);
     } else {
       if (this.formSignIn.controls.password.value === '') {
         this.passwordEmpty = true;
+      } else {
+        this.passwordEmpty = false;
       }
       if (this.formSignIn.controls.nick_name.value === '') {
         this.nick_nameEmpty = true;
+      } else {
+        this.nick_nameEmpty = false;
       }
       if (this.formSignIn.controls.name.value === '') {
         this.nameEmpty = true;
+      } else {
+        this.nameEmpty = false;
       }
     }
   }
