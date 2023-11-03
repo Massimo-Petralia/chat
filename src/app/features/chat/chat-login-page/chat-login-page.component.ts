@@ -18,56 +18,42 @@ export class ChatLoginPageComponent implements OnDestroy {
 
   subs = new Subscription();
 
+  // resetAlertView(
+  //   nick_name?: boolean,
+  //   password?: boolean,
+  //   signInSucces?: boolean
+  // ) {
+  //   this.accessComponent.nickNameError = nick_name;
+  //   this.accessComponent.passwordError = password;
+  //   this.accessComponent.signInSucces = signInSucces;
+  // }
+
   onSignIn(user: User) {
     this.subs.add(
-      this.dataService
-        .checkProperty(user, 'nick_name')
-        .subscribe((response) => {
+      this.dataService.checkRegistration(user).subscribe((data) => {
+        if (data.nick_name.length !== 0) {
+          this.accessComponent.nickNameError = true;
+        } else {
           this.accessComponent.nickNameError = false;
-          this.accessComponent.passwordError = false
-          const responseArray: User[] | [] = response;
-          if (responseArray.length !== 0) {
-            this.accessComponent.nickNameError = true;
-            return;
-          } else {
-            this.dataService.checkPassword(user).subscribe((response) => {
-              const responseArray: User[] | [] = response;
-              if (responseArray.length !== 0) {
-                this.accessComponent.passwordError = true
-                return;
-              } else {
-                this.dataService.createUser(user).subscribe((user) => {
-                  this.users.push(user);
-                  this.accessComponent.signInSucces = true
-                
-                  //this.router.navigate(['/user-list-page', user.nick_name])
-                });
-              }
-            });
-          }
-        })
+        }
+        if (data.password.length !== 0) {
+          this.accessComponent.passwordError = true;
+        } else {
+          this.accessComponent.passwordError = false;
+        }
+
+        if (data.nick_name.length !== 0 && data.password.length !== 0) {
+          this.accessComponent.signInSucces = false;
+
+          return;
+        } else if (data.nick_name.length === 0 && data.password.length === 0) {
+          this.accessComponent.signInSucces = true;
+          this.accessComponent.formSignIn.reset();
+          this.users.push(user);
+        }
+      })
     );
   }
-
-  // onLogIn(user: User) {
-  //   this.subs.add(
-  //     this.dataService.findsUser(user).subscribe((response) => {
-  //       console.log('search response: ', user);
-  //       if (response.length !== 0) {
-  //         // for ?
-  //         for (const item in response) {
-  //           this.users.push(JSON.parse(item));
-  //         }
-  //         this.router.navigate(['/user-list-page', user.nick_name]);
-  //       } else {
-  //         this.dataService.createUser(user).subscribe((user) => {
-  //           this.users.push(user);
-  //           this.router.navigate(['/user-list-page', user.nick_name]);
-  //         });
-  //       }
-  //     })
-  //   );
-  // }
 
   ngOnDestroy(): void {
     this.subs.unsubscribe();

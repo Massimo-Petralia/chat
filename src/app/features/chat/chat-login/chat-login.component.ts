@@ -10,12 +10,12 @@ import { FormBuilder, Validators } from '@angular/forms';
 export class ChatLoginComponent {
   constructor(private formBuilder: FormBuilder) {}
 
-  nickNameError: boolean = false;
-  passwordError: boolean = false;
+  nickNameError?: boolean = false;
+  passwordError?: boolean = false;
   nameEmpty: boolean = false;
   nick_nameEmpty: boolean = false;
   passwordEmpty: boolean = false;
-  signInSucces: boolean = false;
+  signInSucces?: boolean = false;
 
   emptyfield: boolean = false;
   @Output() user = new EventEmitter<User>();
@@ -39,8 +39,8 @@ export class ChatLoginComponent {
   }
   onSignIn() {
     if (this.formSignIn.valid) {
-      this.reset();
       this.user.emit(this.formSignIn.value);
+      this.reset();
     } else {
       if (this.formSignIn.controls.password.value === '') {
         this.passwordEmpty = true;
