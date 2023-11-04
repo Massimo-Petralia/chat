@@ -11,6 +11,60 @@
       "nick_name": "goz",
       "password": "zztop",
       "id": 2
+    },
+    {
+      "name": "flora",
+      "nick_name": "cat-woman",
+      "password": "gatta",
+      "id": 3
+    },
+    {
+      "name": "giuseppe",
+      "nick_name": "iron-man",
+      "password": "marvel",
+      "id": 4
+    },
+    {
+      "name": "max",
+      "nick_name": "gorilla-urbex",
+      "password": "casaspulignia",
+      "id": 5
+    },
+    {
+      "name": "carlo",
+      "nick_name": "decay",
+      "password": "romanziere",
+      "id": 6
+    },
+    {
+      "name": "orazio",
+      "nick_name": "ant-man",
+      "password": "formica",
+      "id": 7
+    },
+    {
+      "name": "ozzy",
+      "nick_name": "batman",
+      "password": "crazytrain",
+      "id": 8
+    },
+    {
+      "name": "yury",
+      "nick_name": "gagari",
+      "password": "russia",
+      "id": 9
+    },
+    {
+      "name": "ciccio",
+      "nick_name": "liotro",
+      "password": "catania",
+      "id": 10
+    },
+    {
+      "name": "bibbo",
+      "nick_name": "begghins",
+      "password": "priolocity",
+      "id": 11
     }
   ]
 }
