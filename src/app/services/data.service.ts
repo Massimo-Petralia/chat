@@ -22,7 +22,7 @@ export class DataService {
 
   
 checkLogIn(user: User) {
-  return this.http.get(`${this.usersDataURL}?id_like=${user.id}`)
+  return 
 }
 
   getUsers() {

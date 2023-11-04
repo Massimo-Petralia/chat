@@ -2,15 +2,15 @@
 <form [formGroup]="formSignIn"  >
     <label for="name">Name: </label>
     <input type="text" formControlName="name">
-    <p class="alertMessage" *ngIf="nameEmpty">the name field can not be empty</p>
+    <p class="alertMessage" *ngIf="signInNameEmpty">the name field can not be empty</p>
     <label for="nick_name">Nick-name: </label>
     <input type="text" formControlName="nick_name">
     <p class="alertMessage" *ngIf="nickNameError">The mick-name is already in use, try another one</p>
-    <p class="alertMessage" *ngIf="nick_nameEmpty">the nick-name field can not be empty</p>
+    <p class="alertMessage" *ngIf="signInNick_nameEmpty">the nick-name field can not be empty</p>
     <label for="password">Password: </label>
     <input type="text" formControlName="password">
     <p class="alertMessage" *ngIf="passwordError">the password is already in use, try another one</p>
-    <p class="alertMessage" *ngIf="passwordEmpty">the password field can not be empty</p>
+    <p class="alertMessage" *ngIf="signInPasswordEmpty">the password field can not be empty</p>
     <button type="submit" (click)="onSignIn()">Sign-in</button>
     <p *ngIf="signInSucces">Your registration was successful, you can log in</p>
 </form>
@@ -18,9 +18,12 @@
 <form [formGroup]="formLog"  >
     <label for="name">Name: </label>
     <input type="text" formControlName="name">
+    <p class="alertMessage" *ngIf="LogNameEmpty">the name field can not be empty</p>
     <label for="nick_name">Nick-name: </label>
     <input type="text" formControlName="nick_name">
+    <p class="alertMessage" *ngIf="LogNick_nameEmpty">the nick-name field can not be empty</p>
     <label for="password">Password: </label>
     <input type="text" formControlName="password">
+    <p class="alertMessage" *ngIf="LogPasswordEmpty">the password field can not be empty</p>
     <button type="submit" (click)="onLog()">Log-in</button>
 </form>

@@ -14,9 +14,13 @@ export class ChatAccesComponent {
   passwordError?: boolean = false;
   signInSucces?: boolean = false;
   
-  nameEmpty: boolean = false;
-  nick_nameEmpty: boolean = false;
-  passwordEmpty: boolean = false;
+  signInNameEmpty: boolean = false;
+  signInNick_nameEmpty: boolean = false;
+  signInPasswordEmpty: boolean = false;
+
+  LogNameEmpty: boolean = false;
+  LogNick_nameEmpty: boolean = false;
+  LogPasswordEmpty: boolean = false;
 
   emptyfield: boolean = false;
   @Output() user = new EventEmitter<User>();
@@ -33,30 +37,30 @@ export class ChatAccesComponent {
     password: this.formBuilder.control<string>('', Validators.required),
   });
 
-  resetAlertView() {
-    this.nameEmpty = false;
-    this.nick_nameEmpty = false;
-    this.passwordEmpty = false;
+  resetSignInAlertView() {
+    this.signInNameEmpty = false;
+    this.signInNick_nameEmpty = false;
+    this.signInPasswordEmpty = false;
   }
   onSignIn() {
     if (this.formSignIn.valid) {
       this.user.emit(this.formSignIn.value);
-      this.resetAlertView();
+      this.resetSignInAlertView();
     } else {
       if (this.formSignIn.controls.password.value === '') {
-        this.passwordEmpty = true;
+        this.signInPasswordEmpty = true;
       } else {
-        this.passwordEmpty = false;
+        this.signInPasswordEmpty = false;
       }
       if (this.formSignIn.controls.nick_name.value === '') {
-        this.nick_nameEmpty = true;
+        this.signInNick_nameEmpty = true;
       } else {
-        this.nick_nameEmpty = false;
+        this.signInNick_nameEmpty = false;
       }
       if (this.formSignIn.controls.name.value === '') {
-        this.nameEmpty = true;
+        this.signInNameEmpty = true;
       } else {
-        this.nameEmpty = false;
+        this.signInNameEmpty = false;
       }
     }
   }
@@ -65,6 +69,22 @@ export class ChatAccesComponent {
     if(this.formLog.valid){
       this.user.emit(this.formLog.value);
 
+    } else {
+      if (this.formLog.controls.password.value === '') {
+        this.LogPasswordEmpty = true;
+      } else {
+        this.LogPasswordEmpty = false;
+      }
+      if (this.formLog.controls.nick_name.value === '') {
+        this.LogNick_nameEmpty = true;
+      } else {
+        this.LogNick_nameEmpty = false;
+      }
+      if (this.formLog.controls.name.value === '') {
+        this.LogNameEmpty = true;
+      } else {
+        this.LogNameEmpty = false;
+      }
     }
   }
 }
