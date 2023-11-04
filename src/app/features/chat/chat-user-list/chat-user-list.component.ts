@@ -10,12 +10,13 @@ import { ActivatedRoute } from '@angular/router';
 export class ChatUserListComponent implements OnInit {
   @Input() users: User[] = [];
 
-  loggedInUser: string | null = ''
+  loggedInUser?: string | null = ''
 
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     const routeParams = this.route.snapshot.paramMap;
     this.loggedInUser = routeParams.get('logged-in-user');
+    console.log('logged user value param: ', this.loggedInUser)
   }
 }

@@ -16,6 +16,8 @@ export class ChatAccesPageComponent implements OnDestroy {
   @ViewChild(ChatAccesComponent) accessComponent!: ChatAccesComponent;
   users: User[] = [];
 
+  loggedUser: User = {}
+
   subs = new Subscription();
 
   // resetAlertView(
@@ -49,7 +51,7 @@ export class ChatAccesPageComponent implements OnDestroy {
         } else if (data.nick_name.length === 0 && data.password.length === 0) {
           this.dataService.createUser(signInUser).subscribe(() => {
             this.accessComponent.signInSucces = true;
-           // this.users.push(_user);
+           //this.users.push(_user);
           });
           this.accessComponent.formSignIn.reset();
         }
@@ -71,10 +73,9 @@ export class ChatAccesPageComponent implements OnDestroy {
           console.error('the authentication data provided is incorrect')
           return
         }else if (data.nick_name.length !== 0 && data.password.length !== 0) {
-          const loggedUser = data.password[0]
-          this.users.push(loggedUser)
-          
-          console.log('check log server response: ', data.password[0])
+          this.loggedUser = data.password[0]
+          this.router.navigate(['user-list-page', this.loggedUser.nick_name])
+         // console.log('check log server response: ', data.password[0])
 
         }
       })
