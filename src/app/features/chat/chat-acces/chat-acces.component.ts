@@ -3,19 +3,20 @@ import { User } from 'src/app/models/user';
 import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-chat-login',
-  templateUrl: './chat-login.component.html',
-  styleUrls: ['./chat-login.component.scss'],
+  selector: 'app-chat-acces',
+  templateUrl: './chat-acces.component.html',
+  styleUrls: ['./chat-acces.component.scss'],
 })
-export class ChatLoginComponent {
+export class ChatAccesComponent {
   constructor(private formBuilder: FormBuilder) {}
 
   nickNameError?: boolean = false;
   passwordError?: boolean = false;
+  signInSucces?: boolean = false;
+  
   nameEmpty: boolean = false;
   nick_nameEmpty: boolean = false;
   passwordEmpty: boolean = false;
-  signInSucces?: boolean = false;
 
   emptyfield: boolean = false;
   @Output() user = new EventEmitter<User>();
@@ -32,7 +33,7 @@ export class ChatLoginComponent {
     password: this.formBuilder.control<string>(''),
   });
 
-  reset() {
+  resetAlertView() {
     this.nameEmpty = false;
     this.nick_nameEmpty = false;
     this.passwordEmpty = false;
@@ -40,7 +41,7 @@ export class ChatLoginComponent {
   onSignIn() {
     if (this.formSignIn.valid) {
       this.user.emit(this.formSignIn.value);
-      this.reset();
+      this.resetAlertView();
     } else {
       if (this.formSignIn.controls.password.value === '') {
         this.passwordEmpty = true;
