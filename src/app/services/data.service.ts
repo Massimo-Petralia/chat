@@ -18,21 +18,12 @@ export class DataService {
     const password$ = this.http.get<User[]>(`${this.usersDataURL}?q=${user.password}`)
     
     return  forkJoin({ nick_name: nick_name$, password: password$ });
-    //per accedere response.nick_name , response.password
   }
 
   
-  
-  
-  checkProperty(user: User, property: string) {
-    return this.http.get<User[]>(
-      `${this.usersDataURL}?${property}_like=${user.nick_name}`
-    );
-  }
-
-  checkPassword(user: User) {
-    return this.http.get<User[]>(`${this.usersDataURL}?q=${user.password}`);
-  }
+checkLogIn(user: User) {
+  return this.http.get(`${this.usersDataURL}?id_like=${user.id}`)
+}
 
   getUsers() {
     return this.http.get<User[]>(this.usersDataURL).pipe(

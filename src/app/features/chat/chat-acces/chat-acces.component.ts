@@ -28,9 +28,9 @@ export class ChatAccesComponent {
   });
 
   formLog = this.formBuilder.group({
-    name: this.formBuilder.control<string>(''),
-    nick_name: this.formBuilder.control<string>(''),
-    password: this.formBuilder.control<string>(''),
+    name: this.formBuilder.control<string>('', Validators.required),
+    nick_name: this.formBuilder.control<string>('', Validators.required),
+    password: this.formBuilder.control<string>('', Validators.required),
   });
 
   resetAlertView() {
@@ -62,6 +62,9 @@ export class ChatAccesComponent {
   }
 
   onLog() {
-    this.user.emit(this.formLog.value);
+    if(this.formLog.valid){
+      this.user.emit(this.formLog.value);
+
+    }
   }
 }

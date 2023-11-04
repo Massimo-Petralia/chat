@@ -48,8 +48,10 @@ export class ChatAccesPageComponent implements OnDestroy {
           return;
         } else if (data.nick_name.length === 0 && data.password.length === 0) {
           this.accessComponent.signInSucces = true;
+          this.dataService.createUser(user).subscribe((_user) => {
+            this.users.push(_user);
+          });
           this.accessComponent.formSignIn.reset();
-          this.users.push(user);
         }
       })
     );
