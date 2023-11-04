@@ -16,7 +16,7 @@ import { registerLocaleData } from '@angular/common';
 import it from '@angular/common/locales/it';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { NgZorroAntdModule } from './ng-zorro-antd';
+import { NgZorroAntdModule } from './ng-zorro-antd.module';
 
 registerLocaleData(it);
 

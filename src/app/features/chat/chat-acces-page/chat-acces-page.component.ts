@@ -28,18 +28,18 @@ export class ChatAccesPageComponent implements OnDestroy {
   //   this.accessComponent.signInSucces = signInSucces;
   // }
 
-  onSignIn(user: User) {
+  onSignIn(signInUser: User) {
     this.subs.add(
-      this.dataService.checkRegistration(user).subscribe((data) => {
+      this.dataService.checkRegistration(signInUser).subscribe((data) => {
         if (data.nick_name.length !== 0) {
-          this.accessComponent.nickNameError = true;
+          this.accessComponent.signInNickNameError = true;
         } else {
-          this.accessComponent.nickNameError = false;
+          this.accessComponent.signInNickNameError = false;
         }
         if (data.password.length !== 0) {
-          this.accessComponent.passwordError = true;
+          this.accessComponent.signInPasswordError = true;
         } else {
-          this.accessComponent.passwordError = false;
+          this.accessComponent.signInPasswordError = false;
         }
 
         if (data.nick_name.length !== 0 && data.password.length !== 0) {
@@ -47,14 +47,38 @@ export class ChatAccesPageComponent implements OnDestroy {
 
           return;
         } else if (data.nick_name.length === 0 && data.password.length === 0) {
-          this.accessComponent.signInSucces = true;
-          this.dataService.createUser(user).subscribe((_user) => {
-            this.users.push(_user);
+          this.dataService.createUser(signInUser).subscribe(() => {
+            this.accessComponent.signInSucces = true;
+           // this.users.push(_user);
           });
           this.accessComponent.formSignIn.reset();
         }
       })
     );
+  }
+
+  onLog(logUser: User) {
+    this.subs.add(
+      this.dataService.checkLogIn(logUser).subscribe((data)=>{
+        if(data.nick_name.length === 0) {
+          this.accessComponent.logNick_nameError = true
+        }else {this.accessComponent.logNick_nameError = false
+        }
+        if(data.password.length === 0) {
+          this.accessComponent.logPasswordError = true
+        }else {this.accessComponent.logPasswordError = false}
+        if(data.nick_name.length === 0 && data.password.length === 0){
+          console.error('the authentication data provided is incorrect')
+          return
+        }else if (data.nick_name.length !== 0 && data.password.length !== 0) {
+          const loggedUser = data.password[0]
+          this.users.push(loggedUser)
+          
+          console.log('check log server response: ', data.password[0])
+
+        }
+      })
+    )
   }
 
   ngOnDestroy(): void {

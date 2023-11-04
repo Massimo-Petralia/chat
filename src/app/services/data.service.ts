@@ -12,17 +12,20 @@ export class DataService {
 
   constructor(private http: HttpClient){}
 
-  checkRegistration(user: User): Observable<{nick_name: User[], password: User[]}> {
+  checkRegistration(signInUser: User): Observable<{nick_name: User[], password: User[]}> {
 
-    const nick_name$ = this.http.get<User[]>(`${this.usersDataURL}?nick_name_like=${user.nick_name}`)
-    const password$ = this.http.get<User[]>(`${this.usersDataURL}?q=${user.password}`)
+    const nick_name$ = this.http.get<User[]>(`${this.usersDataURL}?nick_name_like=${signInUser.nick_name}`)
+    const password$ = this.http.get<User[]>(`${this.usersDataURL}?q=${signInUser.password}`)
     
     return  forkJoin({ nick_name: nick_name$, password: password$ });
   }
 
   
-checkLogIn(user: User) {
-  return 
+checkLogIn(logUser: User): Observable<{nick_name: User[], password: User[]}> {
+  const nick_name$ = this.http.get<User[]>(`${this.usersDataURL}?nick_name_like=${logUser.nick_name}`)
+  const password$ = this.http.get<User[]>(`${this.usersDataURL}?password_like=${logUser.password}`)
+
+  return forkJoin({nick_name: nick_name$, password: password$ })
 }
 
   getUsers() {
