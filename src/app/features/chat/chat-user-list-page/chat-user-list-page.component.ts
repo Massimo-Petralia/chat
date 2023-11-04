@@ -12,16 +12,26 @@ export class ChatUserListPageComponent implements OnInit, OnDestroy {
 
   users: User[] = []
 
+totalUsers?: number 
+
   constructor(private dataService: DataService){}
 
   subs = new Subscription()
 
   ngOnInit(): void {
-    this.subs.add(
-      this.dataService.getUsers().subscribe((users)=>{
-        this.users = users
-      })
-    )
+    const firstPage: number = 1
+    this.onPaginate(firstPage)
+  }
+
+
+  onPaginate(page: number){
+    this.dataService.getUsers(page).subscribe((response)=>{
+      const xTotalCount = response.headers.get('X-total-count')
+      if(xTotalCount){
+        this.totalUsers = Number(xTotalCount)
+        this.users = response.body! 
+      }
+    })
   }
 
 ngOnDestroy(): void {

@@ -28,8 +28,8 @@ checkLogIn(logUser: User): Observable<{nick_name: User[], password: User[]}> {
   return forkJoin({nick_name: nick_name$, password: password$ })
 }
 
-  getUsers() {
-    return this.http.get<User[]>(this.usersDataURL).pipe(
+  getUsers(page: number) {
+    return this.http.get<User[]>(`${this.usersDataURL}?_page=${page}`, {observe: 'response'}).pipe(
       catchError((error) => {
         console.error('get users fail', error);
         throw error;
