@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { User } from 'src/app/models/user';
 import { ActivatedRoute } from '@angular/router';
 
@@ -10,21 +10,20 @@ import { ActivatedRoute } from '@angular/router';
 export class ChatUserListComponent implements OnInit {
   @Input() users: User[] = [];
 
-  @Output() page = new EventEmitter<number>()
+  @Output() page = new EventEmitter<number>();
 
-  loggedInUser?: string | null = ''
+  loggedInUser?: string | null = '';
 
-  @Input() totalUsers?: number
+  @Input() totalUsers?: number;
 
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     const routeParams = this.route.snapshot.paramMap;
     this.loggedInUser = routeParams.get('logged-in-user');
-    console.log('logged user value param: ', this.loggedInUser)
-}
+  }
 
-paginateData(page: number){
-  this.page.emit(page)
-}
+  paginateData(page: number) {
+    this.page.emit(page);
+  }
 }

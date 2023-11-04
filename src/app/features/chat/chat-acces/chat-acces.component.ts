@@ -13,7 +13,7 @@ export class ChatAccesComponent {
   signInNickNameError?: boolean = false;
   signInPasswordError?: boolean = false;
   signInSucces?: boolean = false;
-  
+
   signInNameEmpty: boolean = false;
   signInNick_nameEmpty: boolean = false;
   signInPasswordEmpty: boolean = false;
@@ -22,12 +22,10 @@ export class ChatAccesComponent {
   logPasswordEmpty: boolean = false;
 
   logNick_nameError: boolean = false;
-  logPasswordError: boolean = false
-
-  //emptyfield: boolean = false;
+  logPasswordError: boolean = false;
 
   @Output() signInUser = new EventEmitter<User>();
-  @Output() logUser = new EventEmitter<User>()
+  @Output() logUser = new EventEmitter<User>();
 
   formSignIn = this.formBuilder.group({
     name: this.formBuilder.control<string>('', Validators.required),
@@ -69,9 +67,8 @@ export class ChatAccesComponent {
   }
 
   onLog() {
-    if(this.formLog.valid){
+    if (this.formLog.valid) {
       this.logUser.emit(this.formLog.value);
-
     } else {
       if (this.formLog.controls.password.value === '') {
         this.logPasswordEmpty = true;
@@ -83,7 +80,6 @@ export class ChatAccesComponent {
       } else {
         this.logNick_nameEmpty = false;
       }
-   
     }
   }
 }

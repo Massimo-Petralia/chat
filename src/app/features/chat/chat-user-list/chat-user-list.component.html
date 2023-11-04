@@ -2,7 +2,7 @@
   logged user: 
   <h3 class="loggedUser">{{loggedInUser?.toUpperCase()}}</h3>
 </div>
-<label>Rooms: </label><nz-pagination [nzTotal]="totalUsers" (nzPageIndexChange)="paginateData($event)"></nz-pagination>
+<label>move between pages to see users</label><nz-pagination [nzTotal]="totalUsers" (nzPageIndexChange)="paginateData($event)"></nz-pagination>
 <div *ngFor="let user of users">
   <a href="" [ngClass]="user.nick_name === loggedInUser ? 'loggedUser': '' ">{{user.nick_name}}</a>
 </div>
