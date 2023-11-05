@@ -65,6 +65,24 @@
       "nick_name": "begghins",
       "password": "priolocity",
       "id": 11
+    },
+    {
+      "name": "vanallen",
+      "nick_name": "cocco",
+      "password": "salsa",
+      "id": 12
+    },
+    {
+      "name": "ostiaper",
+      "nick_name": "alcantara",
+      "password": "sentierodipietra",
+      "id": 13
+    },
+    {
+      "name": "casa",
+      "nick_name": "matta",
+      "password": "33",
+      "id": 14
     }
   ]
 }

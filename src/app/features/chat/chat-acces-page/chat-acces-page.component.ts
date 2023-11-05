@@ -23,29 +23,29 @@ export class ChatAccesPageComponent implements OnDestroy {
   onSignIn(signInUser: User) {
     this.subs.add(
       this.dataService.checkRegistration(signInUser).subscribe((data) => {
-        if (data.nick_name.length !== 0) {
+        const nick_name = data.nick_name;
+        const password = data.password;
+        let accessComponent = this.accessComponent;
+
+        if (nick_name === true) {
+          accessComponent.signInNickNameError = true;
           this.accessComponent.signInNickNameError = true;
-        } else {
-          this.accessComponent.signInNickNameError = false;
-        }
-        if (data.password.length !== 0) {
-          this.accessComponent.signInPasswordError = true;
-        } else {
-          this.accessComponent.signInPasswordError = false;
-        }
+        } else accessComponent.signInNickNameError = false;
 
-        if (data.nick_name.length !== 0 && data.password.length !== 0) {
-          this.accessComponent.signInSucces = false;
+        if (password === true) {
+          accessComponent.signInPasswordError = true;
+        } else accessComponent.signInPasswordError = false;
 
+        if (nick_name === true && password === true) {
+          accessComponent.signInSucces = false;
           return;
-        } else if (data.nick_name.length === 0 && data.password.length === 0) {
-          this.dataService.createUser(signInUser).subscribe(() => {
-            this.accessComponent.signInSucces = true;
-          });
-          this.accessComponent.formSignIn.reset();
+        } else {
+          this.dataService.createUser(signInUser).subscribe();
+          accessComponent.signInSucces = true;
+          accessComponent.formSignIn.reset();
         }
       })
-    );
+    )
   }
 
   onLog(logUser: User) {
